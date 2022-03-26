@@ -21,6 +21,10 @@ my_donations = views.DonationView.as_view({
     'post': 'get_my_donations'
 })
 
+all_donations = views.DonationView.as_view({
+    'get': 'get_all_donations'
+})
+
 urlpatterns = [
     path('test/', test),
 
@@ -28,4 +32,5 @@ urlpatterns = [
     path('get_single_restaurant/<int:id>/', get_single_restaurant),
 
     path('get_my_donations/', my_donations),
+    path('get_all_donations/', all_donations),
 ]

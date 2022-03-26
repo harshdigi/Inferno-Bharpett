@@ -92,3 +92,10 @@ class DonationView(ViewSet):
                 return SuccessResponse(serializer.data).response()
         
         return FailureResponse("Token not found! Login Again", 404).response()
+
+
+    def get_all_donations(self, request):
+
+        query = models.Donations.objects.all()
+        serializer = serializers.DonationSerializer(query, many=True)
+        return SuccessResponse(serializer.data).response()
