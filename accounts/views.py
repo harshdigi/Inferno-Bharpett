@@ -29,6 +29,7 @@ class UserAuthView(ViewSet):
 
         username = data["email"]
         email = data["email"]
+        phone = data["phone"]
         password = data["password"]
         role = data["role"]
 
@@ -40,6 +41,7 @@ class UserAuthView(ViewSet):
             first_name = fname,
             last_name = lname,
             email = email,
+            phone=phone,
             password = make_password(password),
             role = role
         )

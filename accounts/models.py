@@ -13,7 +13,8 @@ USER_ROLES = (
 class UserProfile(AbstractUser):
 
     role = models.CharField(max_length=155, choices=USER_ROLES, default="VOLUNTEER")
-
+    phone = models.CharField(max_length=155)
+    
     def __str__(self):
         return self.username
 
