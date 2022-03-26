@@ -25,7 +25,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
             return 0
         else:
             distance = helper.distanceCalc(float(user_latitude), float(user_longitude), float(obj.Latitude), float(obj.Longitude))
-            return "{:.2f}".format(distance*111)
+            return "{:.2f}".format(distance)
 
     def get_Satisfied(self, obj):
         pass

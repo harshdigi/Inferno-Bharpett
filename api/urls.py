@@ -13,6 +13,10 @@ get_single_restaurant = views.RestaurantView.as_view({
     'get': 'get_single_restaurant'
 })
 
+get_recommended_restaurants = views.RestaurantView.as_view({
+    'post': 'get_recommended_restaurants'
+})
+
 donate = views.DonationView.as_view({
     'post': 'donate'
 })
@@ -30,6 +34,7 @@ urlpatterns = [
 
     path('get_all_restaurants/', get_all_restaurants),
     path('get_single_restaurant/<int:id>/', get_single_restaurant),
+    path('get_recommended_restaurants/', get_recommended_restaurants),
 
     path('donate/', donate),
     path('get_my_donations/', my_donations),

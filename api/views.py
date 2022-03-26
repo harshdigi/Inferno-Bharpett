@@ -1,4 +1,5 @@
 from logging import exception
+from traceback import print_tb
 from django.shortcuts import render
 from django.views import View
 
@@ -10,6 +11,7 @@ from rest_framework.pagination import PageNumberPagination
 
 from . import serializers, models
 from utils import helper
+import heapq as hp
 
 from extensions.handlers import SuccessResponse, FailureResponse
 
@@ -54,6 +56,56 @@ class RestaurantView(ViewSet):
             serializer = serializers.RestaurantSerializer(query, many=False, context=context)
             return SuccessResponse(serializer.data).response()
         return FailureResponse('Restaurant Not Found', 404).response()
+
+
+    def get_recommended_restaurants(self, request):
+        data = request.data
+        latitude = data.get("latitude")
+        longitude = data.get("longitude")
+
+        if not latitude or not longitude:
+            return FailureResponse('Error Fetching Latitude/Longitude', 400).response()
+
+        query = helper.get_nearby_restaurants(latitude=float(latitude), longitude=float(longitude))
+        if query is not None:
+            paginator = PageNumberPagination()
+            paginator.page_size = 10
+            result = paginator.paginate_queryset(query, request)
+            context = {
+                "Latitude": float(latitude),
+                "Longitude": float(longitude)
+            }
+
+            list_context = []
+            for data in query:
+                temp_context = {}
+                temp_context["RestaurantID"] = data.RestaurantID
+                temp_context["AverageCostForTwo"] = data.AverageCostForTwo
+                temp_context["AggregateRating"] = data.AggregateRating
+                temp_context["Votes"] = data.Votes
+                temp_context["Distance"] = helper.distanceCalc(float(latitude), float(longitude), float(data.Latitude), float(data.Longitude))
+                list_context.append(temp_context)
+
+            scaling_data = helper.scaling_data(list_context)
+            feature_scaling = helper.featureScaling(scaling_data[0], scaling_data[1], scaling_data[2], scaling_data[3], scaling_data[4], scaling_data[5]) 
+
+            priority_imp = helper.priorityImp(feature_scaling)
+            
+            max_heap = helper.recommendations(priority_imp)
+
+            query_recommended_restaurants = []
+            while(len(max_heap) != 0):
+                try:
+                    recommended_rest = hp.heappop(max_heap)
+                    rest_query = models.Restaurant.objects.filter(RestaurantID=recommended_rest[1]).first()
+                    query_recommended_restaurants.append(rest_query)
+                except:
+                    pass
+            
+            print(query_recommended_restaurants)
+            serializer = serializers.RestaurantSerializer(query_recommended_restaurants, many=True, context=context)
+            return SuccessResponse(serializer.data).response()
+        return FailureResponse('No Restaurants available in your area', 400).response()
 
 
 class DonationView(ViewSet):
