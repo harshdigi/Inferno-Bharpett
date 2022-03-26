@@ -31,7 +31,7 @@ class RestaurantView(ViewSet):
 
     def get_all_restaurants(self, request):
         query = helper.get_nearby_restaurants(latitude=23.37498889 , longitude=85.33548611)
-        if query:
+        if query is not None:
             paginator = PageNumberPagination()
             paginator.page_size = 10
             result = paginator.paginate_queryset(query, request)
@@ -41,7 +41,7 @@ class RestaurantView(ViewSet):
             }
             serializer = serializers.RestaurantSerializer(result, many=True, context=context)
             return paginator.get_paginated_response(serializer.data)
-        return FailureResponse('Internal Server Error', 500).response()
+        return FailureResponse('No Restaurants available in your area', 400).response()
 
 
     def get_single_restaurant(self, request, id):

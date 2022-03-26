@@ -1,3 +1,4 @@
+from logging import exception
 from django.shortcuts import render
 
 # REST FRAMEWORK
@@ -9,6 +10,7 @@ from extensions.handlers import SuccessResponse, FailureResponse
 
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import auth
+from django.http import JsonResponse
 
 from . import models, serializers
 
@@ -33,7 +35,8 @@ class UserAuthView(ViewSet):
         password = data["password"]
         role = data["role"]
 
-        if(models.UserProfile.objects.filter(username=username).exists()):
+        existing_user = models.UserProfile.objects.filter(username=username).first()
+        if existing_user:
             return FailureResponse('User with that email already exists', 400).response()
 
         user = models.UserProfile.objects.create(
@@ -45,12 +48,13 @@ class UserAuthView(ViewSet):
             password = make_password(password),
             role = role
         )
+
         token = Token.objects.create(user=user)
         context = {
             "token": token,
             "role": role 
         }
-        return SuccessResponse(context, 200).response()
+        return SuccessResponse("success").response()
 
     
     def login(self, request):

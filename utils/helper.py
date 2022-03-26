@@ -24,7 +24,10 @@ def get_nearby_restaurants(latitude , longitude, distance_range=10):
         )
     )
 
-    return query
+    if query:
+        return query
+    else:
+        return None
 
 
 def distanceCalc(userlat:float, userlong:float, restlat:float, restlong:float):
