@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Meal(models.Model):
+class Restaurant(models.Model):
 
     RestaurantID = models.IntegerField(blank=False, null=False)
     RestaurantName = models.CharField(max_length=555)
@@ -20,3 +20,6 @@ class Meal(models.Model):
     PriceRange = models.IntegerField()
     AggregateRating = models.CharField(max_length=555)
     Votes = models.IntegerField()    
+
+    def __str__(self):
+        return self.RestaurantName

@@ -1,11 +1,13 @@
-from sqlite3 import paramstyle
 from django.shortcuts import render
+from django.views import View
 
 # REST FRAMEWORK
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
+from rest_framework.pagination import PageNumberPagination
 
 from . import serializers, models
+from utils import helper
 
 import firebase_admin
 from extensions.handlers import SuccessResponse, FailureResponse
@@ -26,12 +28,23 @@ class TestView(ViewSet):
         return SuccessResponse('Working').response()
 
 
-class MealView(ViewSet):
+class RestaurantView(ViewSet):
 
-    def get_all_meals(self, request):
-        return SuccessResponse('working').response()
+    def get_all_restaurants(self, request):
+        # query = models.Restaurant.objects.all().order_by('id')
+        query = helper.get_nearby_restaurants(latitude=23.37498889 , longitude=85.33548611)
+        if query:
+            paginator = PageNumberPagination()
+            paginator.page_size = 10
+            result = paginator.paginate_queryset(query, request)
+            serializer = serializers.RestaurantSerializer(result, many=True)
+            return paginator.get_paginated_response(serializer.data)
+        return FailureResponse('Internal Server Error', 500).response()
 
 
-    def get_single_meal(self, request):
-        pass
-        return SuccessResponse('Working').response()
+    def get_single_restaurant(self, request, id):
+        query = models.Restaurant.objects.filter(id=id).first()
+        if query:
+            serializer = serializers.RestaurantSerializer(query, many=False)
+            return SuccessResponse(serializer.data).response()
+        return FailureResponse('Restaurant Not Found', 404).response()

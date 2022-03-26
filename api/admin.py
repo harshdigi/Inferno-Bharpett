@@ -4,7 +4,7 @@ from import_export.admin import ImportExportModelAdmin
 
 # Register your models here.
 
-class MealAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+class RestaurantAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     pass
 
-admin.site.register(models.Meal, MealAdmin)  
+admin.site.register(models.Restaurant, RestaurantAdmin)  

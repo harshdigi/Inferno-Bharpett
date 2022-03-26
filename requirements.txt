@@ -11,6 +11,8 @@ django-import-export==2.7.1
 djangorestframework==3.13.1
 et-xmlfile==1.1.0
 firebase-admin==5.2.0
+geographiclib==1.52
+geopy==2.2.0
 google-api-core==2.7.1
 google-api-python-client==2.42.0
 google-auth==2.6.2
