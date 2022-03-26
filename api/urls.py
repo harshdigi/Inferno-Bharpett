@@ -31,6 +31,7 @@ urlpatterns = [
     path('get_all_restaurants/', get_all_restaurants),
     path('get_single_restaurant/<int:id>/', get_single_restaurant),
 
+    path('donate/', donate),
     path('get_my_donations/', my_donations),
     path('get_all_donations/', all_donations),
 ]
