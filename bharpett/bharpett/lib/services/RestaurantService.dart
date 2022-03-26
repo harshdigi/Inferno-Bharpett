@@ -13,11 +13,12 @@ class RestaurantService {
     dio.options.headers['authorization'] = "Bearer $token";
     try {
       var response = await dio.post('$baseURL', data: {
-        "latitude": lat,
-        "longitude": long,
+        "latitude": 23.37498889,
+        "longitude": 85.33548611,
       });
       if (response.statusCode == 200) {
-        return response.data;
+        print(response.data['results']);
+        return response.data['results'];
       }
     } on DioError catch (e) {
       print(e);

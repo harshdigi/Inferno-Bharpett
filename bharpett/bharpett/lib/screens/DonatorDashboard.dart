@@ -1,3 +1,4 @@
+import 'package:bharpett/screens/AddForm.dart';
 import 'package:bharpett/widgets/CustomButton.dart';
 import 'package:bharpett/widgets/DetailsWidget.dart';
 import 'package:bharpett/widgets/PreviousDonationHistory.dart';
@@ -47,7 +48,10 @@ class _DonatorDashboardState extends State<DonatorDashboard> {
                     "ADD",
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AddForm()));
+                  },
                   color: Colors.red,
                   height: 40,
                   minWidth: width / 2.3,
