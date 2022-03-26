@@ -15,5 +15,15 @@ class UserProfile(AbstractUser):
     role = models.CharField(max_length=155, choices=USER_ROLES, default="VOLUNTEER")
 
     def __str__(self):
-        
         return self.username
+
+
+class Wallet(models.Model):
+
+    user = models.ForeignKey(
+        to=UserProfile, on_delete=models.CASCADE
+    )
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return self.user.username

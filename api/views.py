@@ -8,20 +8,8 @@ from rest_framework.pagination import PageNumberPagination
 
 from . import serializers, models
 from utils import helper
-import pyrebase
 
 from extensions.handlers import SuccessResponse, FailureResponse
-# import firebase_admin
-# from firebase_admin import credentials, auth, firestore
-
-# Create your views here.
-
-# if not firebase_admin._apps:
-#     cred = credentials.Certificate('bharpett-2fd11-firebase-adminsdk-9soyx-51e6e0192a.json')
-#     default_app = firebase_admin.initialize_app(cred, {
-#         'databaseURL': 'https://bharpett-2fd11-default-rtdb.firebaseio.com/'
-#     })
-#     db = firestore.client()
 
 
 class TestView(ViewSet):
@@ -42,7 +30,6 @@ class TestView(ViewSet):
 class RestaurantView(ViewSet):
 
     def get_all_restaurants(self, request):
-        # query = models.Restaurant.objects.all().order_by('id')
         query = helper.get_nearby_restaurants(latitude=23.37498889 , longitude=85.33548611)
         if query:
             paginator = PageNumberPagination()
@@ -60,6 +47,10 @@ class RestaurantView(ViewSet):
     def get_single_restaurant(self, request, id):
         query = models.Restaurant.objects.filter(id=id).first()
         if query:
-            serializer = serializers.RestaurantSerializer(query, many=False)
+            context = {
+                "Latitude": 23.37498889,
+                "Longitude": 85.33548611
+            }
+            serializer = serializers.RestaurantSerializer(query, many=False, context=context)
             return SuccessResponse(serializer.data).response()
         return FailureResponse('Restaurant Not Found', 404).response()

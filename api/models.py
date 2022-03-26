@@ -1,6 +1,8 @@
 from secrets import choice
 from django.db import models
 
+from accounts.models import UserProfile
+
 # Create your models here.
 
 class Restaurant(models.Model):
@@ -30,8 +32,9 @@ STATUS = (
     ("EXPIRED", "EXPIRED"),
 )
 class Donations(models.Model):
-    name = models.CharField(max_length= 500, )
-    latitude = models.CharField(max_length=500 )
+
+    name = models.CharField(max_length= 500)
+    latitude = models.CharField(max_length=500)
     longitude = models.CharField(max_length= 500)
     date = models.DateField( auto_now=False, auto_now_add=False)
     time = models.TimeField(auto_now=False, auto_now_add=False)

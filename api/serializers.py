@@ -22,6 +22,4 @@ class RestaurantSerializer(serializers.ModelSerializer):
         distance = helper.distanceCalc(float(user_latitude), float(user_longitude), float(obj.Latitude), float(obj.Longitude))
         return "{:.2f}".format(distance*111)
 
-
-class RestaurantSerializerFirebase(serializers.ModelSerializer):
-    pass
+        

@@ -7,7 +7,10 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.viewsets import ViewSet
 from extensions.handlers import SuccessResponse, FailureResponse
 
-from . import models
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import auth
+
+from . import models, serializers
 
 # Create your views here.
 
@@ -37,7 +40,7 @@ class UserAuthView(ViewSet):
             first_name = fname,
             last_name = lname,
             email = email,
-            password = password,
+            password = make_password(password),
             role = role
         )
         Token.objects.create(user=user)
@@ -51,9 +54,21 @@ class UserAuthView(ViewSet):
         username = data["email"]
         password = data["password"]
 
-        user = models.UserProfile.objects.filter(username=username, password=password).first()
-
+        user = auth.authenticate(username=username, password=password)
         if user is not None:
             token = Token.objects.filter(user=user).first().key
             return SuccessResponse(token, 200).response()
         return FailureResponse("User not found", 404).response()
+
+
+class UserDataView(ViewSet):
+
+    # permission_classes = [permissions.IsAuthenticated]
+
+    def get_data(self, request):
+        user = models.UserProfile.objects.filter(user=request.user).first()
+        if user:
+            serializer = serializers.UserSerializer(user, many=False)
+            return SuccessResponse(serializer.data, 200).response()
+        return FailureResponse("User not found", 404).response()
+        
