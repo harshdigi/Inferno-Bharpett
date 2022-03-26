@@ -1,4 +1,5 @@
 import 'package:bharpett/screens/AddForm.dart';
+import 'package:bharpett/screens/AddMoney.dart';
 import 'package:bharpett/widgets/CustomButton.dart';
 import 'package:bharpett/widgets/DetailsWidget.dart';
 import 'package:bharpett/widgets/PreviousDonationHistory.dart';
@@ -26,7 +27,7 @@ class _DonatorDashboardState extends State<DonatorDashboard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Hello Donator Name",
+              "Hello Donator Ram!",
               style: TextStyle(color: Colors.black, fontSize: 26),
             ),
             SizedBox(
@@ -45,7 +46,7 @@ class _DonatorDashboardState extends State<DonatorDashboard> {
               children: [
                 MaterialButton(
                   child: Text(
-                    "ADD",
+                    "ADD DONATION",
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () {
@@ -61,13 +62,15 @@ class _DonatorDashboardState extends State<DonatorDashboard> {
                 ),
                 MaterialButton(
                   child: Text(
-                    "PREVIOUS",
+                    "ADD MONEY",
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AddMoney()));
+                  },
                   color: Colors.red,
                   height: 40,
-                  minWidth: width / 2.3,
                 )
               ],
             ),

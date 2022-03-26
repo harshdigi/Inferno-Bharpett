@@ -1,5 +1,6 @@
 import 'package:bharpett/models/RestaurantModel.dart';
 import 'package:bharpett/services/RestaurantService.dart';
+import 'package:bharpett/widgets/Volcard.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -15,7 +16,85 @@ class VolunteerDashboard extends StatefulWidget {
 
 class _VolunteerDashboardState extends State<VolunteerDashboard> {
   String location = 'Null, Press Button';
-  List<dynamic> responseData = [];
+  List<dynamic> responseData = [
+    {
+      "id": 1,
+      "name": "Holi Donation",
+      "latitude": "23.37498889",
+      "longitude": "85.33548611",
+      "date": "2022-03-26",
+      "time": "19:27:55",
+      "sufficient_for": "10",
+      "status": "EXPIRED",
+      "user": 17
+    },
+    {
+      "id": 2,
+      "name": "MIT ADT Donation",
+      "latitude": "23.37498889",
+      "longitude": "85.33548611",
+      "date": "2022-03-26",
+      "time": "19:28:33",
+      "sufficient_for": "12",
+      "status": "EXPIRED",
+      "user": 17
+    },
+    {
+      "id": 3,
+      "name": "Pune Drive",
+      "latitude": "23.37498889",
+      "longitude": "85.33548611",
+      "date": "2022-03-26",
+      "time": "19:28:53",
+      "sufficient_for": "16",
+      "status": "EXPIRED",
+      "user": 17
+    },
+    {
+      "id": 4,
+      "name": "Iskon Food",
+      "latitude": "23.37498889",
+      "longitude": "85.33548611",
+      "date": "2022-03-26",
+      "time": "19:29:15",
+      "sufficient_for": "18",
+      "status": "EXPIRED",
+      "user": 17
+    },
+    {
+      "id": 5,
+      "name": "Everday Hunger",
+      "latitude": "23.37498889",
+      "longitude": "85.33548611",
+      "date": "2022-03-26",
+      "time": "19:55:33",
+      "sufficient_for": "12",
+      "status": "EXPIRED",
+      "user": 17
+    },
+    {
+      "id": 6,
+      "name": "PiggyBank",
+      "latitude": "23.37498889",
+      "longitude": "85.33548611",
+      "date": "2022-03-26",
+      "time": "19:56:04",
+      "sufficient_for": "18",
+      "status": "EXPIRED",
+      "user": 17
+    },
+    {
+      "id": 7,
+      "name": "Peace Drive",
+      "latitude": "23.37498889",
+      "longitude": "85.33548611",
+      "date": "2022-03-26",
+      "time": "19:56:39",
+      "sufficient_for": "16",
+      "status": "EXPIRED",
+      "user": 17
+    }
+  ];
   bool _isLoading = false;
   double lat = 0.0;
   double long = 0.0;
@@ -77,7 +156,7 @@ class _VolunteerDashboardState extends State<VolunteerDashboard> {
               Row(
                 children: [
                   Text(
-                    "Hello Volunteer Name",
+                    "Hello Volunteer Vinay",
                     style: TextStyle(color: Colors.black, fontSize: 26),
                   ),
                   MaterialButton(
@@ -91,7 +170,9 @@ class _VolunteerDashboardState extends State<VolunteerDashboard> {
                             'Lat: ${position.latitude} , Long: ${position.longitude}';
                       });
                     },
-                    child: Text("Get"),
+                    child: Row(
+                      children: [Text("Get"), Icon(Icons.location_on)],
+                    ),
                   )
                 ],
               ),
@@ -110,23 +191,111 @@ class _VolunteerDashboardState extends State<VolunteerDashboard> {
                 height: 10,
               ),
               Container(
-                height: 200,
-                width: double.infinity,
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: responseData.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return RestaurantCard(
-                        address: responseData[index]["Address"],
-                        aggRating: responseData[index]["AggregateRating"],
-                        averageCost: responseData[index]["AverageCostForTwo"],
-                        latitude: responseData[index]["Latitude"],
-                        longitude: responseData[index]["Longitude"],
-                        restaurantName: responseData[index]["RestaurantName"],
-                        votes: responseData[index]["Votes"].toString(),
-                        distance: responseData[index]["Distance"],
-                      );
-                    }),
+                  height: 200,
+                  width: double.infinity,
+                  child: ListView(scrollDirection: Axis.horizontal, children: [
+                    VolCard(
+                      name: "Holi Donation",
+                      date: "2022-03-26",
+                      latitude: "23.37498889",
+                      longitude: "85.33548611",
+                      color: Color(0xffFD5D5D),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    VolCard(
+                      name: "MIT ADT Donation",
+                      date: "2022-03-26",
+                      latitude: "23.37498889",
+                      longitude: "85.33548611",
+                      color: Color(0xffFFF7BC),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    VolCard(
+                      name: "Pune Drive",
+                      date: "2022-03-21",
+                      latitude: "23.37498889",
+                      longitude: "85.33548611",
+                      color: Color(0xffFF8080),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    VolCard(
+                      name: "Everyday Hunger",
+                      date: "2022-03-13",
+                      latitude: "23.37498889",
+                      longitude: "85.33548611",
+                      color: Color(0xffFD5D5D),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                  ])),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Available Restaurants Near You",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                  height: 200,
+                  width: double.infinity,
+                  child: ListView(scrollDirection: Axis.horizontal, children: [
+                    VolCard(
+                      name: "Holi Donation",
+                      date: "2022-03-26",
+                      latitude: "23.37498889",
+                      longitude: "85.33548611",
+                      color: Color(0xffFD5D5D),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    VolCard(
+                      name: "MIT ADT Donation",
+                      date: "2022-03-26",
+                      latitude: "23.37498889",
+                      longitude: "85.33548611",
+                      color: Color(0xffFFF7BC),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    VolCard(
+                      name: "Pune Drive",
+                      date: "2022-03-21",
+                      latitude: "23.37498889",
+                      longitude: "85.33548611",
+                      color: Color(0xffFF8080),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    VolCard(
+                      name: "Everyday Hunger",
+                      date: "2022-03-13",
+                      latitude: "23.37498889",
+                      longitude: "85.33548611",
+                      color: Color(0xffFD5D5D),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                  ])),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Current Available Tasks",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
               ),
             ],
           ),

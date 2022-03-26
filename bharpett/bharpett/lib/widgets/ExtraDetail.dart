@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 
 class ExtraDetail extends StatefulWidget {
   Color color;
-  ExtraDetail({Key? key, required this.color}) : super(key: key);
+  Icon icon;
+  String text;
+  String text2;
+  ExtraDetail(
+      {Key? key,
+      required this.color,
+      required this.icon,
+      required this.text,
+      required this.text2})
+      : super(key: key);
 
   @override
   State<ExtraDetail> createState() => _ExtraDetailState();
@@ -14,7 +23,24 @@ class _ExtraDetailState extends State<ExtraDetail> {
     return Row(
       children: [
         Container(
-          height: 100,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                widget.text,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              widget.icon,
+              Text(
+                widget.text2,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          height: 120,
           width: 115,
           decoration: BoxDecoration(boxShadow: [
             BoxShadow(

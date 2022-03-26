@@ -2,14 +2,14 @@ import 'package:bharpett/widgets/CustomButton.dart';
 import 'package:bharpett/widgets/FormFieldWidget.dart';
 import 'package:flutter/material.dart';
 
-class AddForm extends StatefulWidget {
-  const AddForm({Key? key}) : super(key: key);
+class AddMoney extends StatefulWidget {
+  const AddMoney({Key? key}) : super(key: key);
 
   @override
-  State<AddForm> createState() => _AddFormState();
+  State<AddMoney> createState() => _AddMoneyState();
 }
 
-class _AddFormState extends State<AddForm> {
+class _AddMoneyState extends State<AddMoney> {
   double latitude = 23.37498889;
   double longitude = 85.33548611;
 
@@ -24,44 +24,38 @@ class _AddFormState extends State<AddForm> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Donation Form",
+              "Add Money to account",
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 20,
             ),
             FormFieldWidget(
-              labelText: 'Donation Name',
+              labelText: 'Donation Amount',
+              onChanged: (value) {},
+              obscureText: false,
+              keyboardType: TextInputType.number,
+              suffixIcon:
+                  IconButton(onPressed: () {}, icon: Icon(Icons.attach_money)),
+            ),
+            FormFieldWidget(
+              labelText: 'Transaction ID',
               onChanged: (value) {},
               obscureText: false,
               keyboardType: TextInputType.text,
-              suffixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.abc)),
-            ),
-            FormFieldWidget(
-              labelText: 'Sufficient For People',
-              onChanged: (value) {},
-              obscureText: false,
-              keyboardType: TextInputType.text,
-              suffixIcon:
-                  IconButton(onPressed: () {}, icon: Icon(Icons.people)),
-            ),
-            FormFieldWidget(
-              labelText: 'Date',
-              onChanged: (value) {},
-              obscureText: false,
-              keyboardType: TextInputType.datetime,
-              suffixIcon:
-                  IconButton(onPressed: () {}, icon: Icon(Icons.date_range)),
-            ),
-            FormFieldWidget(
-              labelText: 'Time',
-              onChanged: (value) {},
-              obscureText: false,
-              keyboardType: TextInputType.datetime,
               suffixIcon: IconButton(
-                  onPressed: () {}, icon: Icon(Icons.watch_later_outlined)),
+                  onPressed: () {},
+                  icon: Icon(Icons.insert_drive_file_rounded)),
             ),
-            CustomButton(text: 'ADD'),
+            FormFieldWidget(
+              labelText: 'Account Name',
+              onChanged: (value) {},
+              obscureText: false,
+              keyboardType: TextInputType.text,
+              suffixIcon:
+                  IconButton(onPressed: () {}, icon: Icon(Icons.person)),
+            ),
+            CustomButton(text: 'ADD Money'),
           ],
         ),
       ),

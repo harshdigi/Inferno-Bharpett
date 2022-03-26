@@ -28,8 +28,6 @@ class RestaurantCard extends StatefulWidget {
 class _RestaurantCardState extends State<RestaurantCard> {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.amber,
-    );
+    return Card();
   }
 }
