@@ -18,7 +18,7 @@ donate = views.DonationView.as_view({
 })
 
 my_donations = views.DonationView.as_view({
-    'post': 'get_my_donations'
+    'get': 'get_my_donations'
 })
 
 all_donations = views.DonationView.as_view({
