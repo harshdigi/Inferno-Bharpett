@@ -113,6 +113,7 @@ class DonationView(ViewSet):
         if get_nearby_donations is None:
             return FailureResponse("No Nearby Donations Available", 404).response()
 
-        query = models.Donations.objects.all()
+        # query = models.Donations.objects.all()
+        query = get_nearby_donations.order_by("date")
         serializer = serializers.DonationSerializer(query, many=True)
         return SuccessResponse(serializer.data).response()
