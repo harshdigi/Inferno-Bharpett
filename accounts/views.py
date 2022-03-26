@@ -66,7 +66,7 @@ class UserDataView(ViewSet):
     # permission_classes = [permissions.IsAuthenticated]
 
     def get_data(self, request):
-        user = models.UserProfile.objects.filter(user=request.user).first()
+        user = models.UserProfile.objects.filter(username=request.user).first()
         if user:
             serializer = serializers.UserSerializer(user, many=False)
             return SuccessResponse(serializer.data, 200).response()
