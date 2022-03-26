@@ -8,3 +8,5 @@ class RestaurantAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     pass
 
 admin.site.register(models.Restaurant, RestaurantAdmin)  
+
+admin.site.register(models.Donations)

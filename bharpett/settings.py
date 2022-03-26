@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'api',
     'accounts',
+    'rest_framework.authtoken',
     'corsheaders',
     'import_export',
     'firebase_admin',

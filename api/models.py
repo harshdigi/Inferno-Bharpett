@@ -1,3 +1,4 @@
+from secrets import choice
 from django.db import models
 
 # Create your models here.
@@ -21,5 +22,21 @@ class Restaurant(models.Model):
     AggregateRating = models.CharField(max_length=555)
     Votes = models.IntegerField()    
 
+
+STATUS = (
+    ("PENDING", "PENDING"),
+    ("ACTIVE", "ACTIVE"),
+    ("COMPLETED", "COMPLETED"),
+    ("EXPIRED", "EXPIRED"),
+)
+class Donations(models.Model):
+    name = models.CharField(max_length= 500, )
+    latitude = models.CharField(max_length=500 )
+    longitude = models.CharField(max_length= 500)
+    date = models.DateField( auto_now=False, auto_now_add=False)
+    time = models.TimeField(auto_now=False, auto_now_add=False)
+    sufficient_for = models.IntegerField()
+    status = models.CharField(max_length=155, choices=STATUS, default="PENDING")
+
     def __str__(self):
-        return self.RestaurantName
+        return self.name
