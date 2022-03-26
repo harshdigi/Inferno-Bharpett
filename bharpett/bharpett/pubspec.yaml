@@ -1,0 +1,44 @@
+name: bharpett
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0-202.0.dev <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  flutter:
+    sdk: flutter
+  flutter_svg: ^1.0.3
+  lottie: ^1.2.2
+  page_transition: ^2.0.5
+
+dev_dependencies:
+  flutter_lints: ^1.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/Donator.png
+    - assets/images/Donator2.svg
+    - assets/images/Volunteer.png
+    - assets/logo/logo.png
+    - assets/logo/logo1.png
+    - assets/animations/red_loader.json
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
