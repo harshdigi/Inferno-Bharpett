@@ -30,4 +30,10 @@ class RestaurantSerializer(serializers.ModelSerializer):
     def get_Satisfied(self, obj):
         pass
 
-        
+
+class DonationSerializer(serializers.ModelSerializer):       
+
+    class Meta:
+
+        model = models.Donations
+        fields = "__all__" 

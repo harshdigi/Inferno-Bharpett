@@ -35,12 +35,12 @@ class Donations(models.Model):
     user = models.ForeignKey(
         to=UserProfile, on_delete=models.DO_NOTHING
     )
-    name = models.CharField(max_length= 500)
+    name = models.CharField(max_length=500)
     latitude = models.CharField(max_length=500)
-    longitude = models.CharField(max_length= 500)
-    date = models.DateField( auto_now=False, auto_now_add=False)
+    longitude = models.CharField(max_length=500)
+    date = models.DateField(auto_now=False, auto_now_add=False)
     time = models.TimeField(auto_now=False, auto_now_add=False)
-    sufficient_for = models.IntegerField()
+    sufficient_for = models.CharField(max_length=155)
     status = models.CharField(max_length=155, choices=STATUS, default="PENDING")
 
     def __str__(self):
