@@ -35,6 +35,7 @@ class _TapButtonState extends State<TapButton> {
               child: Text(
                 widget.tapText,
                 style: const TextStyle(
+                    letterSpacing: 1,
                     color: Colors.white,
                     fontSize: 15,
                     fontWeight: FontWeight.w900),

@@ -12,6 +12,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  String token = '';
+  bool _alreadySigned = false;
+
+  userSignedIn() {}
+
   @override
   void initState() {
     Timer(const Duration(seconds: 4), () {

@@ -1,6 +1,8 @@
 import 'package:bharpett/constants.dart';
+import 'package:bharpett/screens/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:page_transition/page_transition.dart';
 
 class RoleSelector extends StatelessWidget {
   String role;
@@ -17,7 +19,15 @@ class RoleSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            PageTransition(
+                child: RegisterScreen(
+                  role: role,
+                ),
+                type: PageTransitionType.rightToLeft));
+      },
       child: Container(
         height: 120,
         decoration: BoxDecoration(

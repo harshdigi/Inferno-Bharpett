@@ -48,14 +48,14 @@ class RoleSelectionScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 RoleSelector(
-                  role: "Donator",
+                  role: "DONATOR",
                   color: Color(0xffFFC85C),
-                  imagePath: "assets/images/Volunteer.png",
+                  imagePath: "assets/images/Donator.png",
                 ),
                 RoleSelector(
-                  role: "Volunteer",
+                  role: "VOLUNTEER",
                   color: Color(0xffFFCB8E),
-                  imagePath: "assets/images/Donator.png",
+                  imagePath: "assets/images/Volunteer.png",
                 ),
               ],
             ),
