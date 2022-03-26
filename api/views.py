@@ -24,7 +24,6 @@ class RestaurantView(ViewSet):
 
     def get_all_restaurants(self, request):
         data = request.data
-        print(data)
         latitude = data.get("latitude")
         longitude = data.get("longitude")
 
@@ -103,6 +102,16 @@ class DonationView(ViewSet):
 
 
     def get_all_donations(self, request):
+        data = request.data
+        latitude = data.get("latitude")
+        longitude = data.get("longitude")
+        if not latitude or not longitude:
+            return FailureResponse('Error Fetching Latitude/Longitude', 400).response()
+        
+        get_nearby_donations = helper.get_nearby_donations(latitude=float(latitude), longitude=float(longitude))
+
+        if get_nearby_donations is None:
+            return FailureResponse("No Nearby Donations Available", 404).response()
 
         query = models.Donations.objects.all()
         serializer = serializers.DonationSerializer(query, many=True)

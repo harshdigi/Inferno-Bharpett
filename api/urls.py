@@ -22,7 +22,7 @@ my_donations = views.DonationView.as_view({
 })
 
 all_donations = views.DonationView.as_view({
-    'get': 'get_all_donations'
+    'post': 'get_all_donations'
 })
 
 urlpatterns = [
