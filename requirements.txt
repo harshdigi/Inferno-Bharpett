@@ -13,7 +13,6 @@ django-import-export==2.7.1
 django-on-heroku==1.1.2
 djangorestframework==3.13.1
 et-xmlfile==1.1.0
-gcloud==0.17.0
 geographiclib==1.52
 geopy==2.2.0
 grpcio==1.45.0
