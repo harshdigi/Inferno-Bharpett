@@ -11,6 +11,7 @@ import 'package:bharpett/widgets/RedDivider.dart';
 import 'package:bharpett/widgets/RedLoader.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants.dart';
 
@@ -29,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
   String token = '';
   String role = '';
+  Map map = {};
 
   @override
   void initState() {
@@ -41,22 +43,36 @@ class _LoginScreenState extends State<LoginScreen> {
             });
   }
 
+  getTokenAndRole() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var Token = sharedPreferences.getString('token');
+    var Role = sharedPreferences.getString('role');
+    print(Token);
+    print(Role);
+  }
+
   loginUser() {
     setState(() {
       _isLoading = true;
     });
     AuthService().loginUser(email, password).then((value) {
-      token = value['token'];
-      role = value['role'];
+      map = value['message'];
+      token = map['token'];
+      role = map['role'];
+      // getTokenAndRole();
       if (token != '') {
         _isLoading = false;
-        Navigator.pushReplacement(
+        print(role);
+        Navigator.push(
             context,
-            PageTransition(
-                child: role == "Donator"
+            MaterialPageRoute(
+                builder: (context) => role == "DONATOR"
                     ? DonatorDashboard()
-                    : VolunteerDashboard(),
-                type: PageTransitionType.fade));
+                    : VolunteerDashboard()));
+        // Navigator.pushReplacement(
+        //     context,
+        //     PageTransition(
+        //         child: VolunteerDashboard(), type: PageTransitionType.fade));
       }
     });
   }

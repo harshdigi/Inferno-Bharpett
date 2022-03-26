@@ -10,6 +10,9 @@ class VolunteerDashboard extends StatefulWidget {
 class _VolunteerDashboardState extends State<VolunteerDashboard> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(child: Text("Volunteer Dashboard")),
+    );
   }
 }

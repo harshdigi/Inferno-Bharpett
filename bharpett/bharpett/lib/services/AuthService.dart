@@ -7,7 +7,6 @@ class AuthService {
 
   createUser(String name, String email, String password, String phone,
       String role) async {
-    print(email + password + name + phone + role);
     try {
       var response = await dio.post(
         "https://bharpett.herokuapp.com/accounts/register/",
@@ -19,10 +18,8 @@ class AuthService {
           "phone": phone
         },
       );
-      if (response.statusCode == 400) {
-        SharedPreferences preferences = await SharedPreferences.getInstance();
-        await preferences.setString('token', response.data['token']);
-        return response.data['token'];
+      if (response.statusCode == 200) {
+        return response.data['message'];
       } else {
         print(response.data['error']);
       }
@@ -34,13 +31,13 @@ class AuthService {
   loginUser(String email, String password) async {
     try {
       var response = await dio.post(
-        "",
+        "https://bharpett.herokuapp.com/accounts/login/",
         data: {"email": email, "password": password},
       );
       if (response.statusCode == 200) {
-        SharedPreferences preferences = await SharedPreferences.getInstance();
-        await preferences.setString('token', response.data.message['token']);
         print(response.data);
+        SharedPreferences preferences = await SharedPreferences.getInstance();
+        await preferences.setString('token', response.data['message']['token']);
         return response.data;
       } else {
         print(response.data['error']);
