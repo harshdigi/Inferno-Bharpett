@@ -37,7 +37,11 @@ class RestaurantView(ViewSet):
             paginator = PageNumberPagination()
             paginator.page_size = 10
             result = paginator.paginate_queryset(query, request)
-            serializer = serializers.RestaurantSerializer(result, many=True)
+            context = {
+                "Latitude": 23.37498889,
+                "Longitude": 85.33548611
+            }
+            serializer = serializers.RestaurantSerializer(result, many=True, context=context)
             return paginator.get_paginated_response(serializer.data)
         return FailureResponse('Internal Server Error', 500).response()
 
