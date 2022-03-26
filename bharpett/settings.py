@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'import_export',
-    'firebase_admin',
     'django.contrib.gis',
 ]
 
