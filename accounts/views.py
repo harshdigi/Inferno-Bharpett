@@ -59,7 +59,11 @@ class UserAuthView(ViewSet):
         user = auth.authenticate(username=username, password=password)
         if user is not None:
             token = Token.objects.filter(user=user).first().key
-            return SuccessResponse(token, 200).response()
+            context = {
+                "token": token,
+                "role": user.role
+            }
+            return SuccessResponse(context, 200).response()
         return FailureResponse("User not found", 404).response()
 
 
