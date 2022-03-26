@@ -23,14 +23,22 @@ class TestView(ViewSet):
 class RestaurantView(ViewSet):
 
     def get_all_restaurants(self, request):
-        query = helper.get_nearby_restaurants(latitude=23.37498889 , longitude=85.33548611)
+        data = request.data
+        print(data)
+        latitude = data.get("latitude")
+        longitude = data.get("longitude")
+
+        if not latitude or not longitude:
+            return FailureResponse('Error Fetching Latitude/Longitude', 400).response()
+
+        query = helper.get_nearby_restaurants(latitude=float(latitude), longitude=float(longitude))
         if query is not None:
             paginator = PageNumberPagination()
             paginator.page_size = 10
             result = paginator.paginate_queryset(query, request)
             context = {
-                "Latitude": 23.37498889,
-                "Longitude": 85.33548611
+                "Latitude": float(latitude),
+                "Longitude": float(longitude)
             }
             serializer = serializers.RestaurantSerializer(result, many=True, context=context)
             return paginator.get_paginated_response(serializer.data)

@@ -6,7 +6,7 @@ test = views.TestView.as_view({
 })
 
 get_all_restaurants = views.RestaurantView.as_view({
-    'get': 'get_all_restaurants'
+    'post': 'get_all_restaurants'
 })
 
 get_single_restaurant = views.RestaurantView.as_view({
