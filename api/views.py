@@ -8,25 +8,36 @@ from rest_framework.pagination import PageNumberPagination
 
 from . import serializers, models
 from utils import helper
+import pyrebase
 
-import firebase_admin
 from extensions.handlers import SuccessResponse, FailureResponse
-from firebase_admin import credentials, auth
+# import firebase_admin
+# from firebase_admin import credentials, auth, firestore
 
 # Create your views here.
 
-if not firebase_admin._apps:
-    cred = credentials.Certificate('firebase.json')
-    default_app = firebase_admin.initialize_app(cred)
+# if not firebase_admin._apps:
+#     cred = credentials.Certificate('bharpett-2fd11-firebase-adminsdk-9soyx-51e6e0192a.json')
+#     default_app = firebase_admin.initialize_app(cred, {
+#         'databaseURL': 'https://bharpett-2fd11-default-rtdb.firebaseio.com/'
+#     })
+#     db = firestore.client()
+
 
 class TestView(ViewSet):
 
     def test(self, request):
         # params = request.GET
         # uid = params["uid"]
-        # auth.get_user(uid)
-        return SuccessResponse('Working').response()
+        # data = db.collection("current_donation/hardik/")
+        # try:
+        #     user_instance = auth.get_user('zhTj7XicOlSyNUh7dE0qFpr6gHf2')
+        #     return SuccessResponse('Working').response()
+        # except:
+        #     return FailureResponse('No user found', 404).response()
 
+        return SuccessResponse('Working').response()
+        
 
 class RestaurantView(ViewSet):
 
