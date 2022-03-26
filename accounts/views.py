@@ -45,9 +45,12 @@ class UserAuthView(ViewSet):
             password = make_password(password),
             role = role
         )
-        Token.objects.create(user=user)
-
-        return SuccessResponse("User created successfully", 200).response()
+        token = Token.objects.create(user=user)
+        context = {
+            "token": token,
+            "role": role 
+        }
+        return SuccessResponse(context, 200).response()
 
     
     def login(self, request):
