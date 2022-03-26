@@ -76,12 +76,17 @@ class UserAuthView(ViewSet):
 
 class UserDataView(ViewSet):
 
-    # permission_classes = [permissions.IsAuthenticated]
-
     def get_data(self, request):
-        user = models.UserProfile.objects.filter(username=request.user).first()
-        if user:
-            serializer = serializers.UserSerializer(user, many=False)
-            return SuccessResponse(serializer.data, 200).response()
-        return FailureResponse("User not found", 404).response()
+        req_token = request.META.get('HTTP_AUTHORIZATION')
+        if req_token:
+            user_instance = Token.objects.filter(key=req_token).first()
+
+            if user_instance:
+                user = user_instance.user
+                serializer = serializers.UserSerializer(user, many=False)
+                return SuccessResponse(serializer.data, 200).response()
+            else:
+                return FailureResponse("Token not found! Login Again", 404).response()
+        else:
+            return FailureResponse("Token not found! Login Again", 404).response()
         

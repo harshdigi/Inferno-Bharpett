@@ -15,15 +15,6 @@ from extensions.handlers import SuccessResponse, FailureResponse
 class TestView(ViewSet):
 
     def test(self, request):
-        # params = request.GET
-        # uid = params["uid"]
-        # data = db.collection("current_donation/hardik/")
-        # try:
-        #     user_instance = auth.get_user('zhTj7XicOlSyNUh7dE0qFpr6gHf2')
-        #     return SuccessResponse('Working').response()
-        # except:
-        #     return FailureResponse('No user found', 404).response()
-
         return SuccessResponse('Working').response()
         
 
@@ -48,8 +39,8 @@ class RestaurantView(ViewSet):
         query = models.Restaurant.objects.filter(id=id).first()
         if query:
             context = {
-                "Latitude": 23.37498889,
-                "Longitude": 85.33548611
+                "Latitude": 0,
+                "Longitude": 0
             }
             serializer = serializers.RestaurantSerializer(query, many=False, context=context)
             return SuccessResponse(serializer.data).response()

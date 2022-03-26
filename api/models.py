@@ -32,7 +32,9 @@ STATUS = (
     ("EXPIRED", "EXPIRED"),
 )
 class Donations(models.Model):
-
+    user = models.ForeignKey(
+        to=UserProfile, on_delete=models.DO_NOTHING
+    )
     name = models.CharField(max_length= 500)
     latitude = models.CharField(max_length=500)
     longitude = models.CharField(max_length= 500)
