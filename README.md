@@ -31,22 +31,19 @@ The Donator can donate food or money via the app. Whenever the Volunteer registe
 
 ## Screenshots
 
-![1](bharpett/bharpett/assets/screenshots/1.png)
-![2](bharpett/bharpett/assets/screenshots/2.png)
-![3](bharpett/bharpett/assets/screenshots/3.png)
-![4](bharpett/bharpett/assets/screenshots/4.png)
-![5](bharpett/bharpett/assets/screenshots/5.png)
-![6](bharpett/bharpett/assets/screenshots/6.png)
-![7](bharpett/bharpett/assets/screenshots/7.png)
+![1](bharpett/bharpett/assets/screenshots/3.png)
+![2](bharpett/bharpett/assets/screenshots/15.png)
+![3](bharpett/bharpett/assets/screenshots/13.png)
+![4](bharpett/bharpett/assets/screenshots/1.png)
+![5](bharpett/bharpett/assets/screenshots/10.png)
+![6](bharpett/bharpett/assets/screenshots/4.png)
+![7](bharpett/bharpett/assets/screenshots/14.png)
 ![8](bharpett/bharpett/assets/screenshots/8.png)
-![9](bharpett/bharpett/assets/screenshots/9.png)
-![10](bharpett/bharpett/assets/screenshots/10.png)
-![11](bharpett/bharpett/assets/screenshots/11.png)
-![12](bharpett/bharpett/assets/screenshots/12.png)
-![13](bharpett/bharpett/assets/screenshots/13.png)
-![16](bharpett/bharpett/assets/screenshots/16.png)
-![14](bharpett/bharpett/assets/screenshots/14.png)
-![15](bharpett/bharpett/assets/screenshots/15.png)
+![9](bharpett/bharpett/assets/screenshots/5.png)
+![10](bharpett/bharpett/assets/screenshots/2.png)
+![11](bharpett/bharpett/assets/screenshots/6.png)
+![12](bharpett/bharpett/assets/screenshots/11.png)
+![13](bharpett/bharpett/assets/screenshots/15.png)
 
 
 
