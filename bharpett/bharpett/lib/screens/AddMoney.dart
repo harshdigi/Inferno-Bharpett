@@ -1,6 +1,7 @@
 import 'package:bharpett/widgets/CustomButton.dart';
 import 'package:bharpett/widgets/FormFieldWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddMoney extends StatefulWidget {
   const AddMoney({Key? key}) : super(key: key);
@@ -12,6 +13,7 @@ class AddMoney extends StatefulWidget {
 class _AddMoneyState extends State<AddMoney> {
   double latitude = 23.37498889;
   double longitude = 85.33548611;
+  String amount = "";
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,9 @@ class _AddMoneyState extends State<AddMoney> {
             ),
             FormFieldWidget(
               labelText: 'Donation Amount',
-              onChanged: (value) {},
+              onChanged: (value) {
+                amount = value;
+              },
               obscureText: false,
               keyboardType: TextInputType.number,
               suffixIcon:
@@ -55,7 +59,16 @@ class _AddMoneyState extends State<AddMoney> {
               suffixIcon:
                   IconButton(onPressed: () {}, icon: Icon(Icons.person)),
             ),
-            CustomButton(text: 'ADD Money'),
+            CustomButton(
+              text: 'ADD Money',
+              onPressed: () {
+                updateAmount() async {
+                  SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
+                  sharedPreferences.setString('amount', amount);
+                }
+              },
+            ),
           ],
         ),
       ),

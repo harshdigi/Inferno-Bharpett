@@ -1,5 +1,6 @@
 import 'package:bharpett/widgets/ExtraDetail.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailsWidget extends StatefulWidget {
   const DetailsWidget({Key? key}) : super(key: key);
@@ -9,6 +10,19 @@ class DetailsWidget extends StatefulWidget {
 }
 
 class _DetailsWidgetState extends State<DetailsWidget> {
+  String? amount = '';
+
+  getAmount() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    amount = sharedPreferences.getString('amount');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAmount();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(

@@ -1,3 +1,4 @@
+import 'package:bharpett/services/DonationService.dart';
 import 'package:flutter/material.dart';
 
 class PreviousDonationHistory extends StatefulWidget {
@@ -55,15 +56,36 @@ class _PreviousDonationHistoryState extends State<PreviousDonationHistory> {
       "user": 17
     },
   ];
+
+  List<dynamic> myData = [];
+
+  getMyData() async {
+    myData = await DonationService().getmyData();
+    print(myData);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // getMyData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           color: Colors.grey.shade200, borderRadius: BorderRadius.circular(20)),
-      height: 450,
+      height: 470,
       width: double.infinity,
       child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(
+              "Previous Donations",
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: ListView.builder(

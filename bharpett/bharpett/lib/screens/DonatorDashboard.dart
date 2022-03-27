@@ -4,6 +4,7 @@ import 'package:bharpett/widgets/CustomButton.dart';
 import 'package:bharpett/widgets/DetailsWidget.dart';
 import 'package:bharpett/widgets/PreviousDonationHistory.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DonatorDashboard extends StatefulWidget {
   const DonatorDashboard({Key? key}) : super(key: key);
@@ -71,6 +72,7 @@ class _DonatorDashboardState extends State<DonatorDashboard> {
                   },
                   color: Colors.red,
                   height: 40,
+                  minWidth: width / 2.3,
                 )
               ],
             ),

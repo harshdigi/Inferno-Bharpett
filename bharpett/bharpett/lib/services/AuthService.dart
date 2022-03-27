@@ -28,6 +28,12 @@ class AuthService {
     }
   }
 
+  getToken() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var token = preferences.getString('token');
+    return token;
+  }
+
   loginUser(String email, String password) async {
     try {
       var response = await dio.post(

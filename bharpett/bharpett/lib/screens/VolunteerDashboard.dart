@@ -1,4 +1,5 @@
 import 'package:bharpett/models/RestaurantModel.dart';
+import 'package:bharpett/services/DonationService.dart';
 import 'package:bharpett/services/RestaurantService.dart';
 import 'package:bharpett/widgets/Volcard.dart';
 import 'package:flutter/material.dart';
@@ -290,13 +291,6 @@ class _VolunteerDashboardState extends State<VolunteerDashboard> {
                       width: 10,
                     ),
                   ])),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Current Available Tasks",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
             ],
           ),
         ));
