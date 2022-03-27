@@ -44,6 +44,7 @@ The Donator can donate food or money via the app. Whenever the Volunteer registe
 ![11](bharpett/bharpett/assets/screenshots/11.png)
 ![12](bharpett/bharpett/assets/screenshots/12.png)
 ![13](bharpett/bharpett/assets/screenshots/13.png)
+![16](bharpett/bharpett/assets/screenshots/16.png)
 ![14](bharpett/bharpett/assets/screenshots/14.png)
 ![15](bharpett/bharpett/assets/screenshots/15.png)
 
