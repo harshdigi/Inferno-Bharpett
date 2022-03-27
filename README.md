@@ -1,7 +1,7 @@
 
 # Bharpett
 
-![Logo](bharpett/bharpett/assets/screenshots/logo/logo.png)
+![Logo](bharpett/bharpett/assets/logo/logo.png)
 
 An application that helps the Users, find the cheapest and nearest food sources for Donating to the poor, needy ones.
 The app consists of two registration options - 
