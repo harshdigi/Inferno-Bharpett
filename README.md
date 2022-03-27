@@ -1,6 +1,8 @@
 
 # Bharpett
 
+![Logo](bharpett/bharpett/assets/screenshots/logo/logo.png)
+
 An application that helps the Users, find the cheapest and nearest food sources for Donating to the poor, needy ones.
 The app consists of two registration options - 
 1)Donator 2)Volunteer.
@@ -38,5 +40,4 @@ Insert gif or link to demo
 ![1](bharpett/bharpett/assets/screenshots/1.png)
 
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
