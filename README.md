@@ -78,7 +78,7 @@ GET RECOMMENDED RESTAURANTS : post : used to get restaurants filtered under basi
 average-cost, rating, votes, etc. 
 > https://bharpett.herokuapp.com/api/get_recommended_restaurants/
 
-DONATE : post : used to donate food by posting information about it
+DONATE : post : used to donate food by posting information about it.
 
 
 >https://bharpett.herokuapp.com/api/donate/
